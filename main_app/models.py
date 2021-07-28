@@ -18,8 +18,8 @@ class Test(models.Model):
     closing = models.IntegerField()
     address = models.TextField()
 
-    def __str__(self):
-        return self.name
+    def __get_absolute_url__(self):
+        return f"/tests/{self.id}"
 
 class Vaccine(models.Model):
     name = models.CharField(max_length=255)
@@ -34,13 +34,7 @@ class Vaccinating(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, default=1, related_name='pvaccinating')
     site = models.ForeignKey(Vaccine, on_delete=models.CASCADE, default=1, related_name='svaccinating')
 
-    def __str__(self):
-        return self.patient
 
 class Testing(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, default=1, related_name='ptesting')
     site = models.ForeignKey(Test, on_delete=models.CASCADE, default=1, related_name='stesting')
-
-    def __str__(self):
-        return self.patient
-
