@@ -19,7 +19,7 @@ class Test(models.Model):
     address = models.TextField()
 
     def __get_absolute_url__(self):
-        return f"/tests/{self.id}"
+        return f"/testing/{self.id}"
 
 class Vaccine(models.Model):
     name = models.CharField(max_length=255)
